@@ -1,54 +1,60 @@
 <?php
 
-$server_key = "SB-Mid-server-4S7Im09k0fn0cnDP5pMedYHm";
+    $json = file_get_contents('php://input');
+    
+    $result = json_decode($json);
 
-$is_production = false;
+      // Set your merchant code (Note: Server key for sandbox and production mode are different)
+      $merchantCode = "D7993"; 
+      // Set your merchant key (Note: Server key for sandbox and production mode are different)
+      $merchantKey = "096004ad69feb734317b50d4d6565ff0";
+    
+    $paymentAmount = $result->{'paymentAmount'}; 
+    $merchantOrderId = time();
+    
+    $signature = md5($merchantCode . $merchantOrderId . $paymentAmount . $merchantKey);
+  
+    $itemsParam = array(
+        'merchantCode' => $merchantCode,
+        'merchantKey' => $merchantKey,
+        'merchantOrderId' => $merchantOrderId,
+        'signature' => $signature
+    );
 
-$api_url = $is_production ? 
-  'https://app.midtrans.com/snap/v1/transactions' : 
-  'https://app.sandbox.midtrans.com/snap/v1/transactions';
+    class emp{}
+    
+    $params = array_merge((array)$result,$itemsParam);
 
+    $params_string = json_encode($params);
+    
+    $url = 'http://sandbox.duitku.com/webapi/api/merchant/v2/inquiry'; // Sandbox
+    //$url = 'https://passport.duitku.com/webapi/api/merchant/v2/inquiry'; // Production
+    $ch = curl_init();
 
-if( !strpos($_SERVER['REQUEST_URI'], '/charge') ) {
-  http_response_code(404); 
-  echo "wrong path, make sure it's `/charge`"; exit();
-}
+    curl_setopt($ch, CURLOPT_URL, $url); 
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $params_string);                                                                  
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                                                                      
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
+        'Content-Type: application/json',                                                                                
+        'Content-Length: ' . strlen($params_string))                                                                       
+    );   
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 
-if( $_SERVER['REQUEST_METHOD'] !== 'POST'){
-  http_response_code(404);
-  echo "Page not found or wrong HTTP request method is used"; exit();
-}
+    //execute post
+    $request = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-$request_body = file_get_contents('php://input');
-header('Content-Type: application/json');
+    if($httpCode == 200)
+    {
+            echo $request ;
+    }
+    else{
+            $response = new emp();
+			$response->statusMessage = "Server Error . $httpCode ";
+			$response->error = $httpCode;
+			die(json_encode($response)); 
 
-$charge_result = chargeAPI($api_url, $server_key, $request_body);
-
-http_response_code($charge_result['http_code']);
-
-echo $charge_result['body'];
-
-
-function chargeAPI($api_url, $server_key, $request_body){
-  $ch = curl_init();
-  $curl_options = array(
-    CURLOPT_URL => $api_url,
-    CURLOPT_RETURNTRANSFER => 1,
-    CURLOPT_POST => 1,
-    CURLOPT_HEADER => 0,
-
-
-    CURLOPT_HTTPHEADER => array(
-      'Content-Type: application/json',
-      'Accept: application/json',
-      'Authorization: Basic ' . base64_encode($server_key . ':')
-    ),
-    CURLOPT_POSTFIELDS => $request_body
-  );
-  curl_setopt_array($ch, $curl_options);
-  $result = array(
-    'body' => curl_exec($ch),
-    'http_code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),
-  );
-  return $result;
-}
+    }
+			
+?>
