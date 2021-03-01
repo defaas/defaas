@@ -6,9 +6,9 @@
     $merchantCode = "D7993"; // from duitku
     $merchantKey = "096004ad69feb734317b50d4d6565ff0"; // from duitku
     //$merchantOrderId = $result->{'reference'};  // from merchant, unique
-    $merchantOrderId = "75A503B013AB";
+    $merchantOrderId = "20F3E46B2FDF";
     $signature = md5($merchantCode . $merchantOrderId . $merchantKey);
-
+/* 
     $itemsParam = array(
         'merchantCode' => $merchantCode,
         'signature' => $signature
@@ -45,8 +45,8 @@
 	      echo $request;
     }
     else
-        echo $httpCode;
-/* 
+        echo $httpCode; */
+
     $params = array(
         'merchantCode' => $merchantCode,
         'merchantOrderId' => $merchantOrderId,
@@ -77,5 +77,5 @@
         //var_dump($result);
     }
     else
-        echo $httpCode; */
+        echo $httpCode;
 ?>
