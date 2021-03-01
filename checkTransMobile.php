@@ -5,11 +5,10 @@
     
     $merchantCode = "D7993"; // from duitku
     $merchantKey = "096004ad69feb734317b50d4d6565ff0"; // from duitku
-    $merchantOrderId = $result->{'reference'};  // from merchant, unique
-    //$merchantOrderId = "2FFE8AD44F41";
+    //$merchantOrderId = $result->{'reference'};  // from merchant, unique
+    $merchantOrderId = "75A503B013AB";
     $signature = md5($merchantCode . $merchantOrderId . $merchantKey);
 
-    
     $itemsParam = array(
         'merchantCode' => $merchantCode,
         'signature' => $signature
