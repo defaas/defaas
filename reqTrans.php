@@ -2,8 +2,8 @@
     $merchantCode = "D7993"; // from duitku
     $merchantKey = "096004ad69feb734317b50d4d6565ff0"; // from duitku
     $paymentAmount = 40000;
-    $paymentMethod = 'VC'; // VC = Credit Card
-    $merchantOrderId = '1234567890'; // from merchant, unique
+    $paymentMethod = 'I1'; // VC = Credit Card
+    $merchantOrderId = '89898989'; // from merchant, unique
     $productDetails = 'Test Pay with duitku';
     $email = 'test@test.com'; // your customer email
     $phoneNumber = '08123456789'; // your customer phone number (optional)
@@ -102,12 +102,9 @@
     if($httpCode == 200)
     {
         $result = json_decode($request, true);
-
-        var_dump($result)
         //header('location: '. $result['paymentUrl']);
         echo "paymentUrl :". $result['paymentUrl'] . "<br />";
         echo "merchantCode :". $result['merchantCode'] . "<br />";
-        echo "merchantOrderId :". $result['merchantOrderId'] . "<br />";
         echo "reference :". $result['reference'] . "<br />";
         echo "vaNumber :". $result['vaNumber'] . "<br />";
         echo "amount :". $result['amount'] . "<br />";
