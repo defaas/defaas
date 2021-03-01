@@ -10,8 +10,8 @@
     $merchantKey = "096004ad69feb734317b50d4d6565ff0";
     
     $datetime = date('Y-m-d H:i:s');  
-    //$paymentAmount = "500000";
-    $paymentAmount = $result->{'paymentAmount'};
+    $paymentAmount = "500000";
+    //$paymentAmount = $result->{'paymentAmount'};
     $signature = hash('sha256',$merchantCode . $paymentAmount . $datetime . $merchantKey);
     
     $itemsParam = array(
