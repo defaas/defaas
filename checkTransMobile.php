@@ -1,8 +1,6 @@
 <?php
 
-    $json = file_get_contents('php://input');
-    $result = json_decode($json);
-    
+
     $merchantCode = "D7993"; // from duitku
     $merchantKey = "096004ad69feb734317b50d4d6565ff0"; // from duitku
     $merchantOrderId = $result->{'reference'}; // from merchant, unique
