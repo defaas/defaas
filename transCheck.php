@@ -1,7 +1,7 @@
 <?php
     $merchantCode = "D7993"; // from duitku
     $merchantKey = "096004ad69feb734317b50d4d6565ff0"; // from duitku
-    $merchantOrderId = "123456"; // from merchant, unique
+    $merchantOrderId = "1614624430"; // from merchant, unique
 
     $signature = md5($merchantCode . $merchantOrderId . $merchantKey);
 
