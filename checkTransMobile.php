@@ -32,7 +32,7 @@
     if($httpCode == 200)
     {
         $result = json_decode($request, true);
-        var_dump($result);
+        //var_dump($result);
     }
     else
         echo $httpCode;
