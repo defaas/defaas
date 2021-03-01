@@ -10,8 +10,9 @@
       $merchantKey = "096004ad69feb734317b50d4d6565ff0";
     
     $paymentAmount = $result->{'paymentAmount'}; 
-    $merchantOrderId = time();
-    
+    //$merchantOrderId = time();
+    $merchantOrderId = $result->{'merchantOrderId'};
+
     $signature = md5($merchantCode . $merchantOrderId . $paymentAmount . $merchantKey);
   
     $itemsParam = array(
