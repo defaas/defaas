@@ -105,6 +105,7 @@
         //header('location: '. $result['paymentUrl']);
         echo "paymentUrl :". $result['paymentUrl'] . "<br />";
         echo "merchantCode :". $result['merchantCode'] . "<br />";
+        echo "merchantOrderId :". $result['merchantOrderId'] . "<br />";
         echo "reference :". $result['reference'] . "<br />";
         echo "vaNumber :". $result['vaNumber'] . "<br />";
         echo "amount :". $result['amount'] . "<br />";
