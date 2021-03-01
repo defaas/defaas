@@ -102,6 +102,8 @@
     if($httpCode == 200)
     {
         $result = json_decode($request, true);
+
+        var_dump($result)
         //header('location: '. $result['paymentUrl']);
         echo "paymentUrl :". $result['paymentUrl'] . "<br />";
         echo "merchantCode :". $result['merchantCode'] . "<br />";
