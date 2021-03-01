@@ -3,7 +3,7 @@
     $merchantKey = "096004ad69feb734317b50d4d6565ff0"; // from duitku
     $paymentAmount = 40000;
     $paymentMethod = 'VC'; // VC = Credit Card
-    $merchantOrderId = "1234567890"; // from merchant, unique
+    $merchantOrderId = '1234567890'; // from merchant, unique
     $productDetails = 'Test Pay with duitku';
     $email = 'test@test.com'; // your customer email
     $phoneNumber = '08123456789'; // your customer phone number (optional)
