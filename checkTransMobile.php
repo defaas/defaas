@@ -5,8 +5,8 @@
     
     $merchantCode = "D7993"; // from duitku
     $merchantKey = "096004ad69feb734317b50d4d6565ff0"; // from duitku
-    //$merchantOrderId = $result->{'reference'};  // from merchant, unique
-    $merchantOrderId = "20F3E46B2FDF";
+    $merchantOrderId = $result->{'reference'};  // from merchant, unique
+    //$merchantOrderId = "20F3E46B2FDF";
     $signature = md5($merchantCode . $merchantOrderId . $merchantKey);
 /* 
     $itemsParam = array(
@@ -74,7 +74,7 @@
     if($httpCode == 200)
     {
         $result = json_decode($request, true);
-        var_dump($result);
+        //var_dump($result);
     }
     else
         echo $httpCode;
