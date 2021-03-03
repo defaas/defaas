@@ -74,8 +74,8 @@
     if($httpCode == 200)
     {
         $result = json_decode($request, true);
-        //echo $result;
-        var_dump($result);
+        echo $result;
+        //var_dump($result);
     }
     else
         echo $httpCode;
