@@ -73,8 +73,8 @@
 
     if($httpCode == 200)
     {
-        $result = json_decode($request, true);
-        echo $result;
+        //$result = json_decode($request, true);
+        echo $request;
         //var_dump($result);
     }
     else
